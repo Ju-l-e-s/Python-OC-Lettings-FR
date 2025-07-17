@@ -1,3 +1,8 @@
+"""Views for the oc_lettings_site application.
+
+This module defines the views used in the oc_lettings_site application,
+including index view.
+"""
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 

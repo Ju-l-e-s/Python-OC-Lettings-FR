@@ -1,37 +1,43 @@
+"""Data models for the lettings application.
+
+This module defines the database models used in the lettings application,
+including Address and Letting models.
+"""
 from django.core.validators import MaxValueValidator, MinLengthValidator
 from django.db import models
 
 
 class Address(models.Model):
-    """
-    Address model.
+    """Represents a physical address for a property.
 
     Attributes:
-        number (int): The number of the address.
-        street (str): The street of the address.
-        city (str): The city of the address.
-        state (str): The state of the address.
-        zip_code (int): The zip code of the address.
-        country_iso_code (str): The country ISO code of the address.
+        number (int): The street number. Must be a positive integer ≤ 9999.
+        street (str): The street name. Maximum length of 64 characters.
+        city (str): The city name. Maximum length of 64 characters.
+        state (str): The state code. Exactly 2 characters.
+        zip_code (int): The postal code. Must be a 5-digit number.
+        country_iso_code (str): The ISO country code. Exactly 3 characters.
     """
     number = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
     street = models.CharField(max_length=64)
     city = models.CharField(max_length=64)
     state = models.CharField(max_length=2, validators=[MinLengthValidator(2)])
     zip_code = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])
-    country_iso_code = models.CharField(max_length=3, validators=[MinLengthValidator(3)])
+    country_iso_code = models.CharField(
+        max_length=3,
+        validators=[MinLengthValidator(3)]
+    )
 
     def __str__(self):
         return f'{self.number} {self.street}'
 
 
 class Letting(models.Model):
-    """
-    Letting model.
+    """Represents a property available for rent.
 
     Attributes:
-        title (str): The title of the letting.
-        address (Address): The address of the letting.
+        title (str): The title f the property. Maximum 256 characters.
+        address (Address): A one-to-one relationship with the Address model. Deleted if the address is deleted.
     """
     title = models.CharField(max_length=256)
     address = models.OneToOneField(Address, on_delete=models.CASCADE)

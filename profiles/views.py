@@ -1,3 +1,8 @@
+"""Views for the profiles application.
+
+This module defines the views used in the profiles application,
+including index and profile views.
+"""
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
