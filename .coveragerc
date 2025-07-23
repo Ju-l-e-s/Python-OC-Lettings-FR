@@ -1,0 +1,12 @@
+[run]
+source = lettings,profiles,oc_lettings_site
+omit =
+    */tests/*
+    *tests.py
+    */migrations/*
+    asgi.py
+    wsgi.py
+
+
+[report]
+skip_empty = True
