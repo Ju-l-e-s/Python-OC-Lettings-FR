@@ -18,6 +18,7 @@ class Address(models.Model):
         zip_code (int): The postal code. Must be a 5-digit number.
         country_iso_code (str): The ISO country code. Exactly 3 characters.
     """
+
     number = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
     street = models.CharField(max_length=64)
     city = models.CharField(max_length=64)
@@ -28,6 +29,10 @@ class Address(models.Model):
         validators=[MinLengthValidator(3)]
     )
 
+    class Meta:
+        verbose_name = 'address'
+        verbose_name_plural = 'addresses'
+
     def __str__(self):
         return f'{self.number} {self.street}'
 
@@ -37,7 +42,8 @@ class Letting(models.Model):
 
     Attributes:
         title (str): The title f the property. Maximum 256 characters.
-        address (Address): A one-to-one relationship with the Address model. Deleted if the address is deleted.
+        address (Address): A one-to-one relationship with the Address model.
+        Deleted if the address is deleted.
     """
     title = models.CharField(max_length=256)
     address = models.OneToOneField(Address, on_delete=models.CASCADE)
