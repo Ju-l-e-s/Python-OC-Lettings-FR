@@ -27,10 +27,21 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
 - Activer l'environnement `source venv/bin/activate`
 - Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
-`which python`
+  `which python`
 - Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
 - Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
 - Pour désactiver l'environnement, `deactivate`
+
+#### Initialiser les variables d'environnement
+
+- Créer le fichier `.env` à la racine du projet
+- Ajouter les variables d'environnement suivantes :
+
+  ```
+  DEBUG=False
+  SECRET_KEY=your_secret_key
+  SENTRY_DSN=https://<publicKey>@o0.ingest.sentry.io/<projectID>
+  ```
 
 #### Exécuter le site
 
@@ -61,7 +72,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - Afficher les tables dans la base de données `.tables`
 - Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
 - Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
+Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
 - `.quit` pour quitter
 
 #### Panel d'administration
@@ -73,5 +84,5 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 Utilisation de PowerShell, comme ci-dessus sauf :
 
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
+- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
