@@ -5,6 +5,9 @@ including index view.
 """
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -17,4 +20,5 @@ def index(request: HttpRequest) -> HttpResponse:
     Returns:
         HttpResponse: The rendered HTML response.
     """
+    logger.info("Displaying index page")
     return render(request, 'index.html')
