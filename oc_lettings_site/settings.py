@@ -1,6 +1,7 @@
 import os
-
 from pathlib import Path
+
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,13 +10,67 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+# --- Loading environment variables ---
+env = environ.Env(
+    DEBUG=(bool, False),
+    SENTRY_DSN=(str, ""),
+    SECRET_KEY=(str, ""),
+)
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
+SENTRY_DSN = env("SENTRY_DSN")
+SECRET_KEY = env("SECRET_KEY")
+# --- Conditional Sentry initialization ---
+if not DEBUG and SENTRY_DSN:
+    import logging
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
+    from sentry_sdk.integrations.logging import LoggingIntegration
 
-ALLOWED_HOSTS = []
+    sentry_logging = LoggingIntegration(
+        level=logging.INFO,
+        event_level=logging.ERROR
+    )
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        integrations=[DjangoIntegration(), sentry_logging],
+        send_default_pii=True,
+        ignore_errors=[]
+    )
+
+# --- Logging configuration for console ---
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "{levelname}: {message}",
+            "style": "{",
+        },
+    },
+    "loggers": {
+        # Desactivate DEBUG of Sentry HTTP transport
+        "sentry_sdk.transport": {
+            "level": "WARNING",
+            "handlers": ["console"],
+            "propagate": False,
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console"],
+    },
+}
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -33,6 +88,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # Custom Sentry middleware to capture all exceptions
+    "oc_lettings_site.middleware.SentryExceptionMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
