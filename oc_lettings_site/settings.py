@@ -21,8 +21,10 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 DEBUG = env("DEBUG")
 SENTRY_DSN = env("SENTRY_DSN")
 SECRET_KEY = env("SECRET_KEY")
+
 # --- Conditional Sentry initialization ---
 if not DEBUG and SENTRY_DSN:
+    print("Initialisation de Sentry...")
     import logging
     import sentry_sdk
     from sentry_sdk.integrations.django import DjangoIntegration
@@ -36,7 +38,7 @@ if not DEBUG and SENTRY_DSN:
         dsn=SENTRY_DSN,
         integrations=[DjangoIntegration(), sentry_logging],
         send_default_pii=True,
-        ignore_errors=[]
+        environment="production",
     )
 
 # --- Logging configuration for console ---
@@ -70,7 +72,7 @@ LOGGING = {
     },
 }
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 
 
 # Application definition
@@ -91,6 +93,8 @@ MIDDLEWARE = [
     # Custom Sentry middleware to capture all exceptions
     "oc_lettings_site.middleware.SentryExceptionMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    # Whitenoise middleware to serve static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -169,7 +173,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static", ]
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
