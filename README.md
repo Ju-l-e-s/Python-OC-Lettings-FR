@@ -86,3 +86,59 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1`
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+## Pipeline CI/CD et Déploiement
+
+### Vue d'ensemble
+
+Le projet utilise un pipeline CI/CD automatisé avec GitHub Actions qui s'exécute à chaque push sur la branche `main`. Le pipeline est composé de deux étapes principales :
+
+1. **Tests et validation** : Exécution des tests unitaires, vérification du linting et de la couverture de code (>= 80%).
+
+2. **Déploiement** : Construction de l'image Docker, publication sur Docker Hub et déploiement sur Render.
+
+### Configuration requise
+
+- Un compte [Docker Hub](https://hub.docker.com/) pour héberger les images
+- Un compte [Render](https://render.com/) pour l'hébergement
+- Les secrets suivants configurés dans les paramètres GitHub de votre dépôt :
+  - `DOCKERHUB_USERNAME` : Votre nom d'utilisateur Docker Hub
+  - `DOCKERHUB_TOKEN` : Votre token d'accès Docker Hub
+  - `RENDER_DEPLOY_HOOK_URL` : L'URL du webhook de déploiement Render
+
+### Variables d'environnement Render
+
+Les variables suivantes doivent être configurées dans le tableau de bord Render :
+
+- `ALLOWED_HOSTS` : "oc-lettings-latest-qgxn.onrender.com, oc-lettings.onrender.com"
+- `DEBUG` : "False"
+- `SECRET_KEY` : Votre clé secrète Django
+- `SENTRY_DSN` : Votre DSN Sentry pour la surveillance des erreurs
+
+### Étapes de déploiement
+
+1. Configurez les secrets dans les paramètres GitHub de votre dépôt
+2. Configurez les variables d'environnement dans le tableau de bord Render
+3. Poussez vos modifications sur la branche `main` pour déclencher le pipeline
+
+### Workflow CI/CD
+
+Le pipeline est défini dans [.github/workflows/ci-cd.yml](.github/workflows/ci-cd.yml) et comprend :
+
+1. **Tests et validation** (sur chaque push et PR)
+
+   - Installation des dépendances
+   - Vérification du style avec flake8
+   - Exécution des tests unitaires avec une couverture minimale de 80%
+
+2. **Publication de l'image Docker** (uniquement sur `main`)
+
+   - Construction de l'image Docker
+   - Publication sur Docker Hub avec les tags :
+     - `latest` pour la dernière version stable
+     - `[commit-hash]` pour la traçabilité
+
+3. **Déploiement sur Render** (uniquement sur `main`)
+   - Déclenchement via webhook
+   - Redémarrage automatique du service
+   - Accès à l'application : [https://oc-lettings-latest-qgxn.onrender.com](https://oc-lettings-latest-qgxn.onrender.com)
