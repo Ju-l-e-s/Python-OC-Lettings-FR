@@ -20,7 +20,7 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
 DEBUG = env("DEBUG")
 SENTRY_DSN = env("SENTRY_DSN")
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY", default="secret-test-key")
 
 # --- Conditional Sentry initialization ---
 if not DEBUG and SENTRY_DSN:

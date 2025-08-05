@@ -5,7 +5,6 @@ import pytest
 
 
 @pytest.mark.django_db
-@override_settings(SECRET_KEY="secret-test-key")
 def test_index_view(client):
     """ Test that the index view returns a 200 status code and the correct template """
     url = reverse('index')
@@ -15,7 +14,7 @@ def test_index_view(client):
 
 
 @pytest.mark.django_db
-@override_settings(DEBUG=False, ALLOWED_HOSTS=['*'], SECRET_KEY="secret-test-key")
+@override_settings(DEBUG=False, ALLOWED_HOSTS=['*'])
 def test_404_error_handling(client):
     """ Test that the 404 error view returns a 404 status code and the correct template """
     response = client.get("/bad_url")
@@ -26,7 +25,7 @@ def test_404_error_handling(client):
 
 
 @pytest.mark.django_db
-@override_settings(DEBUG=False, ALLOWED_HOSTS=['*'], SECRET_KEY="secret-test-key")
+@override_settings(DEBUG=False, ALLOWED_HOSTS=['*'])
 def test_500_error_handling(monkeypatch, client):
     """ Test that the 500 error view returns a 500 status code and the correct template """
     def fake_index(request):
