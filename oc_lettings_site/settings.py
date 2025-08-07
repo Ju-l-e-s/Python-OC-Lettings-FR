@@ -20,7 +20,7 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, ".env"))
 
 DEBUG = env("DEBUG")
 SENTRY_DSN = env("SENTRY_DSN")
-SECRET_KEY = env("SECRET_KEY", default="secret-test-key")
+SECRET_KEY = env("SECRET_KEY")
 
 # --- Conditional Sentry initialization ---
 if not DEBUG and SENTRY_DSN:
@@ -90,9 +90,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     # Custom Sentry middleware to capture all exceptions
     "oc_lettings_site.middleware.SentryExceptionMiddleware",
-    'django.middleware.security.SecurityMiddleware',
     # Whitenoise middleware to serve static files
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
