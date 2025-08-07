@@ -33,11 +33,11 @@ def test_profile_view(client, test_profile):
     assert test_profile.user.username in response.content.decode()
 
 
-@override_settings(DEBUG=False, ALLOWED_HOSTS=["*"])
 @pytest.mark.django_db
-@override_settings(DEBUG=False, ALLOWED_HOSTS=["*"], SECRET_KEY="secret-test-key")
+@override_settings(DEBUG=False)
 def test_profile_view_404_error(client):
     """ Test that the profile view returns a 404 status code when the profile is not found. """
     url = reverse('profiles:profile', kwargs={'username': "Bart"})
     response = client.get(url)
     assert response.status_code == 404
+    

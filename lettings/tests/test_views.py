@@ -45,7 +45,7 @@ def test_lettings_letting_view(client, test_letting):
     assert test_letting.address.street in response.content.decode()
 
 
-@override_settings(DEBUG=False, ALLOWED_HOSTS=["*"])
+@override_settings(DEBUG=False)
 @pytest.mark.django_db
 def test_lettings_letting_view_not_found(client):
     """ Test that the letting view returns a 404 status code when the letting is not found. """
