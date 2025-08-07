@@ -40,4 +40,3 @@ def test_profile_view_404_error(client):
     url = reverse('profiles:profile', kwargs={'username': "Bart"})
     response = client.get(url)
     assert response.status_code == 404
-    
