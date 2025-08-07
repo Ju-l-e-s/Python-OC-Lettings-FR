@@ -16,6 +16,7 @@ def test_profile():
 
 
 @pytest.mark.django_db
+@override_settings(SECRET_KEY="test-secret-key")
 def test_profile_idex_view(client, test_profile):
     """ Test that the profile index view returns a 200 status code and the correct template. """
     url = reverse('profiles:index')
@@ -25,6 +26,7 @@ def test_profile_idex_view(client, test_profile):
 
 
 @pytest.mark.django_db
+@override_settings(SECRET_KEY="test-secret-key")
 def test_profile_view(client, test_profile):
     """ Test that the profile view returns a 200 status code and the correct template. """
     url = reverse('profiles:profile', kwargs={'username': test_profile.user.username})
@@ -34,7 +36,7 @@ def test_profile_view(client, test_profile):
 
 
 @pytest.mark.django_db
-@override_settings(DEBUG=False)
+@override_settings(DEBUG=False, SECRET_KEY="test-secret-key")
 def test_profile_view_404_error(client):
     """ Test that the profile view returns a 404 status code when the profile is not found. """
     url = reverse('profiles:profile', kwargs={'username': "Bart"})

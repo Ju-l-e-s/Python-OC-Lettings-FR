@@ -28,6 +28,7 @@ def test_letting(test_address):
 
 
 @pytest.mark.django_db
+@override_settings(SECRET_KEY="test-secret-key")
 def test_lettings_index_view(client, test_letting):
     """ Test that the lettings index view returns a 200 status code and the correct template. """
     url = reverse('lettings:index')
@@ -37,6 +38,7 @@ def test_lettings_index_view(client, test_letting):
 
 
 @pytest.mark.django_db
+@override_settings(SECRET_KEY="test-secret-key")
 def test_lettings_letting_view(client, test_letting):
     """ Test that the letting view returns a 200 status code and the correct template. """
     url = reverse('lettings:letting', kwargs={'letting_id': test_letting.id})
@@ -45,7 +47,7 @@ def test_lettings_letting_view(client, test_letting):
     assert test_letting.address.street in response.content.decode()
 
 
-@override_settings(DEBUG=False)
+@override_settings(DEBUG=False, SECRET_KEY="test-secret-key")
 @pytest.mark.django_db
 def test_lettings_letting_view_not_found(client):
     """ Test that the letting view returns a 404 status code when the letting is not found. """
