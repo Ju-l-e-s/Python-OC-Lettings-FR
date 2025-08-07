@@ -50,4 +50,7 @@ USER appuser
 EXPOSE 8000 
  
 # Start the application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "oc_lettings_site.wsgi:application"]
+CMD ["sh", "-c", "\
+    python manage.py migrate --noinput && \
+    exec gunicorn --bind 0.0.0.0:8000 --workers 3 oc_lettings_site.wsgi:application\
+"]
