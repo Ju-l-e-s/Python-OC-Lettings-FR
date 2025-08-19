@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; Python-OC-Lettings-FR  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quickstart" href="quickstart.html" />
+    <link rel="prev" title="Project Description" href="description.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Python-OC-Lettings-FR
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Project Description</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#local-development">Local Development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#macos-linux">macOS / Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#windows">Windows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies / Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_models.html">Database and Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_models.html#model-classes">Model Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_urls.html">API / Views / URLs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment and CI/CD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Python-OC-Lettings-FR</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/sections/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="local-development">
+<h2>Local Development<a class="headerlink" href="#local-development" title="Link to this heading"></a></h2>
+<p><strong>Prerequisites</strong></p>
+<ul class="simple">
+<li><p>GitHub account with read access to this repository</p></li>
+<li><p>Git CLI</p></li>
+<li><p>SQLite3 CLI</p></li>
+<li><p>Python interpreter, version 3.6 or higher</p></li>
+</ul>
+<section id="macos-linux">
+<h3>macOS / Linux<a class="headerlink" href="#macos-linux" title="Link to this heading"></a></h3>
+<p><strong>Clone the repository</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/put/project/in
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git
+</pre></div>
+</div>
+<p><strong>Create the virtual environment</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/Python-OC-Lettings-FR
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="c1"># On Ubuntu, if you get &quot;package not found&quot;, run:</span>
+apt-get<span class="w"> </span>install<span class="w"> </span>python3-venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+<p>Confirm that:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">python</span></code> points to the virtualenv Python</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> is 3.6 or higher</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">pip</span></code> points to the virtualenv pip</p></li>
+</ul>
+<p>Deactivate the environment with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+<p><strong>Initialize environment variables</strong></p>
+<p>At the project root, create a <cite>.env</cite> file and add:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DEBUG</span><span class="o">=</span>False
+<span class="nv">SECRET_KEY</span><span class="o">=</span>your_secret_key
+<span class="nv">SENTRY_DSN</span><span class="o">=</span>https://&lt;publicKey&gt;@o0.ingest.sentry.io/&lt;projectID&gt;
+</pre></div>
+</div>
+<p><strong>Run the site locally</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/Python-OC-Lettings-FR
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>--requirement<span class="w"> </span>requirements.txt
+python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+<p>Then open <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> in a browser. You should see several profiles and lettings.</p>
+<p><strong>Linting</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+flake8
+</pre></div>
+</div>
+<p><strong>Unit tests</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+pytest
+</pre></div>
+</div>
+<p><strong>Database</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/Python-OC-Lettings-FR
+sqlite3
+.open<span class="w"> </span>oc-lettings-site.sqlite3
+.tables
+pragma<span class="w"> </span>table_info<span class="o">(</span>Python-OC-Lettings-FR_profile<span class="o">)</span><span class="p">;</span>
+<span class="k">select</span><span class="w"> </span>user_id,<span class="w"> </span>favorite_city<span class="w"> </span>from<span class="w"> </span>Python-OC-Lettings-FR_profile<span class="w"> </span>where<span class="w"> </span>favorite_city<span class="w"> </span>like<span class="w"> </span><span class="s1">&#39;B%&#39;</span><span class="p">;</span>
+.quit
+</pre></div>
+</div>
+<p><strong>Admin panel</strong></p>
+<p>Go to <a class="reference external" href="http://localhost:8000/admin">http://localhost:8000/admin</a> and log in with:</p>
+<ul class="simple">
+<li><p>Username: <code class="docutils literal notranslate"><span class="pre">admin</span></code></p></li>
+<li><p>Password: <code class="docutils literal notranslate"><span class="pre">Abc1234!</span></code></p></li>
+</ul>
+</section>
+<section id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Link to this heading"></a></h3>
+<p>Same steps as above, but using PowerShell:</p>
+<ul class="simple">
+<li><p>Activate virtualenv:</p></li>
+</ul>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">.\</span><span class="n">venv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">&lt;command&gt;</span></code> with:</p></li>
+</ul>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">Get-Command</span> <span class="p">&lt;</span><span class="n">command</span><span class="p">&gt;).</span><span class="n">Path</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="description.html" class="btn btn-neutral float-left" title="Project Description" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, OC Lettings.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
