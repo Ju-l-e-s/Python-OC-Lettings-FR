@@ -89,6 +89,10 @@ INSTALLED_APPS = [
     'profiles',
 ]
 
+# for readthedocs documentation
+if DEBUG or os.getenv("READTHEDOCS") == "True":
+    INSTALLED_APPS += ["django_extensions"]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # Custom Sentry middleware to capture all exceptions
