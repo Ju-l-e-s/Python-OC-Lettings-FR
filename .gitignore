@@ -4,6 +4,5 @@ venv
 .DS_Store
 .idea/
 .coverage
-*/migrations/
 .env
 .secrets
