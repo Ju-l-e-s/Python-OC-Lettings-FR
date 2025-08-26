@@ -90,7 +90,7 @@ INSTALLED_APPS = [
 ]
 
 # for readthedocs documentation
-if DEBUG or os.getenv("READTHEDOCS") == "True":
+if os.getenv("READTHEDOCS") == "True":
     INSTALLED_APPS += ["django_extensions"]
 
 MIDDLEWARE = [
