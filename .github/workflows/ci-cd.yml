@@ -62,4 +62,6 @@ jobs:
 
       - name: Trigger Render deploy via webhook
         run: |
-          curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+          curl -G \
+            --data-urlencode "imgURL=docker.io/caneles/oc-lettings:${{ github.sha }}" \
+            "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
